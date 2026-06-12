@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<title>Tour VR Aquileia</title>
+
+<script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+
+<script>
+AFRAME.registerComponent('change-scene', {
+  schema: {
+    target: {type: 'string'}
+  },
+
+  init: function () {
+    this.el.addEventListener('click', () => {
+      changeScene(this.data.target);
+    });
+  }
+});
+
+function changeScene(sceneName) {
+
+  const sky = document.querySelector('#sky');
+  sky.setAttribute('src', '#' + sceneName);
+
+  if (sceneName === 'tappa1') {
+    sky.setAttribute('rotation', '0 0 0');
+  }
+
+  if (sceneName === 'tappa2') {
+    sky.setAttribute('rotation', '0 -90 0');
+  }
+
+  if (sceneName === 'tappa3') {
+    sky.setAttribute('rotation', '0 0 0');
+  }
+
+  document.querySelectorAll('.hotspot').forEach(function(el) {
+    el.setAttribute('visible', false);
+  });
+
+  document.querySelectorAll('.' + sceneName).forEach(function(el) {
+    el.setAttribute('visible', true);
+  });
+}
+</script>
+
+</head>
+
+<body>
+
+<a-scene vr-mode-ui="enabled: true">
+
+  <a-assets>
+    <img id="tappa1" src="tappa1.jpg">
+    <img id="tappa2" src="tappa2.jpg">
+    <img id="tappa3" src="tappa3.jpg">
+
+    <img id="hotspot1" src="hotspot1.png">
+    <img id="hotspot2" src="hotspot2.png">
+    <img id="hotspot3" src="hotspot3.png">
+  </a-assets>
+
+  <a-sky
+    id="sky"
+    src="#tappa1"
+    rotation="0 0 0">
+  </a-sky>
+
+  <a-camera position="0 1.6 0">
+
+    <a-cursor
+      fuse="true"
+      fuse-timeout="2000"
+      geometry="primitive:ring;
+                radiusInner:0.015;
+                radiusOuter:0.025"
+      material="color:white; shader:flat">
+    </a-cursor>
+
+  </a-camera>
+
+  <!-- TAPPA 1 → TAPPA 2: entra nel corridoio -->
+  <a-image
+    id="to2"
+    class="hotspot tappa1"
+    src="#hotspot1"
+    position="2 2 -5"
+    width="1.8"
+    height="0.9"
+    look-at-camera
+    change-scene="target:tappa2">
+  </a-image>
+
+  <!-- TAPPA 1 → TAPPA 3: fase di V secolo -->
+  <a-image
+    id="to3"
+    class="hotspot tappa1"
+    src="#hotspot2"
+    position="-2 1.5 -5"
+    width="1.8"
+    height="0.9"
+    look-at-camera
+    change-scene="target:tappa3">
+  </a-image>
+
+  <!-- TAPPA 2 → TAPPA 1: ritorno -->
+  <a-image
+    id="backFrom2"
+    class="hotspot tappa2"
+    src="#hotspot3"
+    position="1 4.5 -5"
+    width="1.8"
+    height="0.9"
+    visible="false"
+    look-at-camera
+    change-scene="target:tappa1">
+  </a-image>
+
+  <!-- TAPPA 3 → TAPPA 1: ritorno -->
+  <a-image
+    id="backFrom3"
+    class="hotspot tappa3"
+    src="#hotspot3"
+    position="-2 1.5 -5"
+    width="1.8"
+    height="0.9"
+    visible="false"
+    look-at-camera
+    change-scene="target:tappa1">
+  </a-image>
+
+</a-scene>
+
+</body>
+</html>
