@@ -82,75 +82,51 @@ function changeScene(sceneName) {
 
   </a-camera>
 
-  <!-- ================================================= -->
-  <!-- HOTSPOT 1: TAPPA 1 → TAPPA 2 / entra nel corridoio -->
-  <!-- Ruota questo hotspot cambiando rotation del rigTo2 -->
-  <!-- ================================================= -->
+<!-- TAPPA 1 → TAPPA 2: entra nel corridoio -->
+  <a-image
+    id="to2"
+    class="hotspot tappa1"
+    src="#hotspot1"
+    position="2 2 -5"
+    width="1.8"
+    height="0.9"
+    change-scene="target:tappa2">
+  </a-image>
 
-  <a-entity id="rigTo2" rotation="0 60 0">
-    <a-image
-      id="to2"
-      class="hotspot tappa1"
-      src="#hotspot1"
-      position="2 1 -5"
-      width="1.8"
-      height="0.9"
-      change-scene="target:tappa2">
-    </a-image>
-  </a-entity>
+  <!-- TAPPA 1 → TAPPA 3: fase di V secolo -->
+  <a-image
+    id="to3"
+    class="hotspot tappa1"
+    src="#hotspot2"
+    position="-2 1.5 -5"
+    width="1.8"
+    height="0.9"
+    change-scene="target:tappa3">
+  </a-image>
 
-  <!-- ================================================= -->
-  <!-- HOTSPOT 2: TAPPA 1 → TAPPA 3 / fase di V secolo -->
-  <!-- Ruota questo hotspot cambiando rotation del rigTo3 -->
-  <!-- ================================================= -->
+  <!-- TAPPA 2 → TAPPA 1: ritorno -->
+  <a-image
+    id="backFrom2"
+    class="hotspot tappa2"
+    src="#hotspot3"
+    position="1 4.5 -5"
+    width="1.8"
+    height="0.9"
+    visible="false"
+    change-scene="target:tappa1">
+  </a-image>
 
-  <a-entity id="rigTo3" rotation="0 -60 0">
-    <a-image
-      id="to3"
-      class="hotspot tappa1"
-      src="#hotspot2"
-      position="-2 1.5 -5"
-      width="1.8"
-      height="0.9"
-      change-scene="target:tappa3">
-    </a-image>
-  </a-entity>
-
-  <!-- ================================================= -->
-  <!-- HOTSPOT 3: TAPPA 2 → TAPPA 1 / ritorno -->
-  <!-- Ruota questo hotspot cambiando rotation del rigBackFrom2 -->
-  <!-- ================================================= -->
-
-  <a-entity id="rigBackFrom2" rotation="0 0 0">
-    <a-image
-      id="backFrom2"
-      class="hotspot tappa2"
-      src="#hotspot3"
-      position="1 4.5 -5"
-      width="1.8"
-      height="0.9"
-      visible="false"
-      change-scene="target:tappa1">
-    </a-image>
-  </a-entity>
-
-  <!-- ================================================= -->
-  <!-- HOTSPOT 4: TAPPA 3 → TAPPA 1 / ritorno -->
-  <!-- Ruota questo hotspot cambiando rotation del rigBackFrom3 -->
-  <!-- ================================================= -->
-
-  <a-entity id="rigBackFrom3" rotation="0 110 0">
-    <a-image
-      id="backFrom3"
-      class="hotspot tappa3"
-      src="#hotspot3"
-      position="-6 1.5 -4"
-      width="1.8"
-      height="0.9"
-      visible="false"
-      change-scene="target:tappa1">
-    </a-image>
-  </a-entity>
+  <!-- TAPPA 3 → TAPPA 1: ritorno -->
+  <a-image
+    id="backFrom3"
+    class="hotspot tappa3"
+    src="#hotspot3"
+    position="-3 1.5 -4"
+    width="1.8"
+    height="0.9"
+    visible="false"
+    change-scene="target:tappa1">
+  </a-image>
 
 </a-scene>
 
